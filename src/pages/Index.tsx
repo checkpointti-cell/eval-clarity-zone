@@ -1,12 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Hero from "@/components/Hero";
+import VideoEmbed from "@/components/VideoEmbed";
+import InfoSection from "@/components/InfoSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Hero />
+      
+      <VideoEmbed 
+        position="top"
+        title="Guía Práctica de Evaluación"
+        description="Aprende las mejores prácticas y metodologías para implementar un proceso efectivo"
+      />
+      
+      <InfoSection />
+      
+      <VideoEmbed 
+        position="bottom"
+        title="Profundiza en el Proceso"
+        description="Descubre más detalles sobre cómo llevar a cabo evaluaciones de desempeño exitosas"
+      />
+      
+      <Footer />
     </div>
   );
 };
