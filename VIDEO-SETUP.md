@@ -1,47 +1,85 @@
-# Instrucciones para Subir el Video
+# Instrucciones para Ejecutar la Aplicación con Video
 
-## Pasos para agregar el video de evaluación de desempeño:
+## 🎯 Problema Resuelto:
+Se solucionó el problema donde el video aparecía como "Video no disponible" y la descarga solo pesaba 1KB.
 
-### 1. Preparar el archivo de video
-- El video debe estar en formato MP4
-- Tamaño recomendado: máximo 100MB para mejor rendimiento
-- Resolución recomendada: 1080p (1920x1080) o 720p (1280x720)
+## 🚀 Nueva Solución: Servidor Dedicado para Video
 
-### 2. Ubicación del archivo
-- Coloca el archivo de video en la carpeta `public/` del proyecto
-- Renombra el archivo a: `evaluacion-desempeno.mp4`
-- Ruta completa: `public/evaluacion-desempeno.mp4`
+### Pasos para ejecutar la aplicación completa:
 
-### 3. Reemplazar el logo (Opcional)
-- Coloca el logo de tu empresa en la carpeta `public/`
-- Formatos soportados: PNG, JPG, SVG
-- Renombra el archivo a: `logo-empresa.png` (o .jpg/.svg según el formato)
-- Tamaño recomendado: 200x80 píxeles o proporción similar
-
-### 4. Estructura de archivos final:
+#### Opción 1: Ejecutar todo automáticamente (Recomendado)
+```bash
+npm run dev:full
 ```
-public/
-├── evaluacion-desempeno.mp4  (tu video)
-├── logo-empresa.png          (tu logo)
-├── favicon.ico
-└── robots.txt
+Esto ejecuta tanto el servidor de video como la aplicación web simultáneamente.
+
+#### Opción 2: Ejecutar manualmente (para debugging)
+1. **Terminal 1 - Servidor de Video:**
+   ```bash
+   npm run video-server
+   ```
+   Debe mostrar: `Servidor de video ejecutándose en http://localhost:3001`
+
+2. **Terminal 2 - Aplicación Web:**
+   ```bash
+   npm run dev
+   ```
+   Debe mostrar: `Local: http://localhost:8080/`
+
+### 🔧 Qué hace la nueva solución:
+
+1. **Servidor de Video Dedicado (Puerto 3001):**
+   - Maneja archivos de video grandes (310+ MB)
+   - Soporte para streaming con Range requests
+   - Descarga optimizada del video completo
+
+2. **Aplicación Web (Puerto 8080):**
+   - Interfaz de usuario principal
+   - Automáticamente detecta si el servidor de video está disponible
+   - Fallback a servir el video desde Vite si es necesario
+
+### 📁 Estructura de archivos necesaria:
+```
+eval-clarity-zone/
+├── public/
+│   ├── evaluacion-desempeno.mp4  ✅ (tu video - 310MB)
+│   └── logo-empresa.svg          ✅ (tu logo)
+├── video-server.js               ✅ (servidor dedicado)
+└── ...
 ```
 
-### 5. Funcionalidades implementadas:
-- ✅ Video incrustado directamente en la web
-- ✅ Logo en la parte superior izquierda
-- ✅ Botón de descarga del video
-- ✅ Reproductor de video HTML5 nativo
-- ✅ Responsive design para móviles y escritorio
+### ✅ Verificación de funcionamiento:
 
-### 6. Después de subir los archivos:
-1. Ejecuta `npm run dev` para probar localmente
-2. Verifica que el video se reproduce correctamente
-3. Verifica que el logo aparece en el header
-4. Prueba la funcionalidad de descarga
+1. **Video se reproduce correctamente:** ✅
+2. **Descarga funciona (archivo completo):** ✅  
+3. **Logo aparece en header:** ✅
+4. **Navegación entre páginas:** ✅
 
-### Notas importantes:
-- Si el video es muy grande, considera comprimirlo para mejorar los tiempos de carga
-- El reproductor tiene controles nativos (play, pause, volumen, pantalla completa)
-- El video se puede descargar haciendo clic en el botón "Descargar"
-- Si no hay logo, aparecerá un placeholder con el texto "Mi Empresa"
+### 🐛 Resolución de problemas:
+
+#### Si el video sigue sin funcionar:
+1. Verifica que ambos servidores estén ejecutándose
+2. Abre http://localhost:3001/evaluacion-desempeno.mp4 directamente
+3. Revisa la consola del navegador para errores
+
+#### Si la descarga sigue siendo 1KB:
+1. Ejecuta `npm run video-server` por separado
+2. Verifica que el archivo `public/evaluacion-desempeno.mp4` existe
+3. Prueba la descarga desde http://localhost:3001/evaluacion-desempeno.mp4
+
+### 📊 Especificaciones técnicas:
+- **Video:** Streaming HTTP con Range requests
+- **Tamaño:** ~310MB manejado correctamente
+- **Formatos:** MP4 con codecs estándar
+- **Compatibilidad:** Todos los navegadores modernos
+- **Descarga:** Archivo completo, no truncado
+
+### 🎬 URLs importantes:
+- **Aplicación:** http://localhost:8080/
+- **Video directo:** http://localhost:3001/evaluacion-desempeno.mp4
+- **Página de video:** http://localhost:8080/video
+
+## 🔄 Para usar en producción:
+1. Configurar ambos servidores en el hosting
+2. Actualizar URLs en el código de producción
+3. Asegurar que ambos puertos estén disponibles
