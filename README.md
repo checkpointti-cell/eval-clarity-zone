@@ -1,5 +1,7 @@
 # Welcome to your Lovable project
 
+proyecto desde vscode
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/0f95537c-22de-45d6-8233-b65f2b552e1b
