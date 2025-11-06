@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Play } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   const scrollToContent = () => {
     document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -22,15 +25,26 @@ const Hero = () => {
           <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90 max-w-3xl mx-auto">
             Potencia el crecimiento de tu equipo con un sistema efectivo de evaluación que impulsa el desarrollo profesional y el éxito organizacional
           </p>
-          <Button
-            onClick={scrollToContent}
-            size="lg"
-            variant="secondary"
-            className="gap-2 shadow-lg hover:shadow-xl transition-all"
-          >
-            Conoce Más
-            <ArrowDown className="w-5 h-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => navigate('/video')}
+              size="lg"
+              variant="secondary"
+              className="gap-2 shadow-lg hover:shadow-xl transition-all"
+            >
+              <Play className="w-5 h-5" />
+              Ver Video Guía
+            </Button>
+            <Button
+              onClick={scrollToContent}
+              size="lg"
+              variant="outline"
+              className="gap-2 shadow-lg hover:shadow-xl transition-all bg-white/10 text-primary-foreground border-primary-foreground/20 hover:bg-white/20"
+            >
+              Conoce Más
+              <ArrowDown className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>

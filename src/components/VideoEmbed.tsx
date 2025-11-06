@@ -7,8 +7,8 @@ interface VideoEmbedProps {
 }
 
 const VideoEmbed = ({ title, description, position = "top" }: VideoEmbedProps) => {
-  // SharePoint embed URL converted from share link
-  const embedUrl = "https://agroindustrialmolino-my.sharepoint.com/personal/rbohorquez_arrozsonora_com_co/_layouts/15/embed.aspx?UniqueId=98fb0ce5-4e46-a92a-6ffa-6ed74b8520d5&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create";
+  // Dailymotion embed URL
+  const embedUrl = "https://www.dailymotion.com/embed/video/k1PZFnqPC0Pu4iEa5Tm";
 
   return (
     <section className={`py-16 px-4 ${position === "top" ? "bg-gradient-to-b from-accent to-background" : "bg-background"}`}>
